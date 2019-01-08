@@ -1,0 +1,23 @@
+@echo off
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague
+call bb train test England_PremierLeague

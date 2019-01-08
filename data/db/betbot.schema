@@ -1,0 +1,62 @@
+<!--  betbot.schema              BETBOT DATABASE DEFINITION -->
+<database name="betbot" version="1.1">
+	<table name="Provider">
+		<column-def name="id" key="yes"/>
+		<column-def name="title" type="VARCHAR(255)" allow_null="no"/>
+		<data>
+			<row><entry name="title" value="smarterbetting"/></row>
+			<row><entry name="title" value="soccerstand"/></row>
+			<row><entry name="title" value="365stats"/></row>
+			<row><entry name="title" value="football_data"/></row>
+		</data>
+	</table>
+	<table name="Location">
+		<column-def name="id" key="yes"/>
+		<column-def name="title" type="VARCHAR(255)" allow_null="no"/>
+		<column-def name="providerID" type="FOREIGN" allow_null="no"/>
+		<column-def name="modifieddate" type="DATETIME" allow_null="no" default="$now"/>
+	</table>
+	<table name="Competition">
+		<column-def name="id" key="yes"/>
+		<column-def name="title" type="VARCHAR(255)" allow_null="no"/>
+		<column-def name="locationID" type="FOREIGN" allow_null="no"/>
+		<column-def name="providerID" type="FOREIGN" allow_null="no"/>
+		<column-def name="modifieddate" type="DATETIME" allow_null="no" default="$now"/>
+	</table>
+	<table name="Team">
+		<column-def name="id" key="yes"/>
+		<column-def name="title" type="VARCHAR(255)"    allow_null="no"/>
+		<column-def name="locationID" type="FOREIGN" allow_null="no"/>
+		<column-def name="providerID" type="FOREIGN" allow_null="no"/>
+		<column-def name="modifieddate" type="DATETIME" allow_null="no" default="$now"/>
+	</table>
+	<table name="Bookmaker">
+		<column-def name="id" key="yes"/>
+		<column-def name="title" type="VARCHAR(255)"    allow_null="no"/>
+		<column-def name="website" type="VARCHAR(255)"  allow_null="no" default="''"/>
+		<column-def name="providerID" type="FOREIGN" allow_null="no"/>
+		<column-def name="modifieddate" type="DATETIME" allow_null="no" default="$now"/>
+	</table>
+	<table name="Match">
+		<column-def name="id" key="yes"/>
+		<column-def name="date" type="DATETIME" allow_null="no"/>
+		<column-def name="competitionID" type="FOREIGN" allow_null="no"/>
+		<column-def name="team1ID" type="FOREIGN" allow_null="no"/>
+		<column-def name="team2ID" type="FOREIGN" allow_null="no"/>
+		<column-def name="goals1" type="INTEGER(3)" allow_null="no"/>
+		<column-def name="goals2" type="INTEGER(3)" allow_null="no"/>
+		<column-def name="providerID" type="FOREIGN" allow_null="no"/>
+		<column-def name="modifieddate" type="DATETIME" allow_null="no" default="$now"/>
+	</table>
+	<table name="Odds">
+		<index key="yes">
+			<column-def name="bookmakerID" type="FOREIGN" allow_null="no"/>
+			<column-def name="matchID" type="FOREIGN" allow_null="no"/>
+		</index>
+		<column-def name="home" type="FLOAT" allow_null="no"/>
+		<column-def name="draw" type="FLOAT" allow_null="no"/>
+		<column-def name="away" type="FLOAT" allow_null="no"/>
+		<column-def name="providerID" type="FOREIGN" allow_null="no"/>
+		<column-def name="modifieddate" type="DATETIME" allow_null="no" default="$now"/>
+	</table>
+</database>

@@ -1,0 +1,58 @@
+BEGIN;
+CREATE TABLE Provider (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(255) NOT NULL
+);
+INSERT INTO Provider (title) VALUES ('smarterbetting');
+INSERT INTO Provider (title) VALUES ('soccerstand');
+INSERT INTO Provider (title) VALUES ('365stats');
+INSERT INTO Provider (title) VALUES ('football_data');
+CREATE TABLE Location (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(255) NOT NULL,
+	providerID BIGINT NOT NULL,
+	modifieddate TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE TABLE Competition (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(255) NOT NULL,
+	locationID BIGINT NOT NULL,
+	providerID BIGINT NOT NULL,
+	modifieddate TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE TABLE Team (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(255) NOT NULL,
+	locationID BIGINT NOT NULL,
+	providerID BIGINT NOT NULL,
+	modifieddate TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE TABLE Bookmaker (
+	id SERIAL PRIMARY KEY,
+	title VARCHAR(255) NOT NULL,
+	website VARCHAR(255) NOT NULL DEFAULT '',
+	providerID BIGINT NOT NULL,
+	modifieddate TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE TABLE Match (
+	id SERIAL PRIMARY KEY,
+	date TIMESTAMP NOT NULL,
+	competitionID BIGINT NOT NULL,
+	team1ID BIGINT NOT NULL,
+	team2ID BIGINT NOT NULL,
+	goals1 INTEGER NOT NULL,
+	goals2 INTEGER NOT NULL,
+	providerID BIGINT NOT NULL,
+	modifieddate TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE TABLE Odds (
+	bookmakerID BIGINT NOT NULL,
+	matchID BIGINT NOT NULL,
+	home FLOAT(20) NOT NULL,
+	draw FLOAT(20) NOT NULL,
+	away FLOAT(20) NOT NULL,
+	providerID BIGINT NOT NULL,
+	modifieddate TIMESTAMP NOT NULL DEFAULT now()
+);
+CREATE INDEX IDX_Odds_1 ON Odds (bookmakerID, matchID);
+COMMIT;
